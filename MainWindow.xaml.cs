@@ -24,5 +24,6 @@ namespace Regex_Kylosov
         {
             InitializeComponent();
         }
+
     }
 }
