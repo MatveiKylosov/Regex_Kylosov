@@ -21,9 +21,13 @@ namespace Regex_Kylosov
     /// </summary>
     public partial class MainWindow : Window
     {
+        public List<Classes.Passport> Passports = new List<Classes.Passport>();
+
+        public static MainWindow init;
         public MainWindow()
         {
             InitializeComponent();
+            init = this;
         }
 
         private void Add(object sender, RoutedEventArgs e) => new Windows.Add(null).ShowDialog();
@@ -51,6 +55,29 @@ namespace Regex_Kylosov
             lv_passport.Items.Clear();
             foreach (Classes.Passport passport in Passports)
                 lv_passport.Items.Add(passport);
+        }
+
+        private void Find(object sender, RoutedEventArgs e)
+        {
+            int i = 0;
+            foreach (Passport item in lv_passport.Items)
+            {
+
+                if (item.Name.Contains(FindText.Text) ||
+                    item.FirstName.Contains(FindText.Text) ||
+                    item.LastName.Contains(FindText.Text) ||
+                    item.Issued.Contains(FindText.Text) ||
+                    item.DateOfIssued.Contains(FindText.Text) ||
+                    item.DepartmnetCode.Contains(FindText.Text) ||
+                    item.SeriesAndNumber.Contains(FindText.Text) ||
+                    item.DateOfBirth.Contains(FindText.Text) ||
+                    item.PlaceOfBirth.Contains(FindText.Text) ||
+                    item.PathToImage.Contains(FindText.Text))
+                {
+                    new Windows.Add(lv_passport.Items[i] as Classes.Passport).ShowDialog();
+                }
+                i++;
+            }
         }
     }
 }
