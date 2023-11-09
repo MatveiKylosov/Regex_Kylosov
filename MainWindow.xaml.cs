@@ -25,5 +25,24 @@ namespace Regex_Kylosov
             InitializeComponent();
         }
 
+        private void Add(object sender, RoutedEventArgs e) => new Windows.Add(null).ShowDialog();
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            if (lv_passport.SelectedIndex > -1)
+                new Windows.Add(lv_passport.SelectedItem as Classes.Passport).ShowDialog();
+            else MessageBox.Show("Выберите элемент для изменения");
+        }
+
+        private void Delete(object sender, RoutedEventArgs e)
+        {
+            if (lv_passport.SelectedIndex > -1)
+            {
+                Passports.Remove(lv_passport.SelectedItem as Classes.Passport);
+                loadPassport();
+            }
+            else
+                MessageBox.Show("Выберите элемент для удаления");
+        }
     }
 }
