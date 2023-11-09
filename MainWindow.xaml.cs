@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Regex_Kylosov.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,13 @@ namespace Regex_Kylosov
             }
             else
                 MessageBox.Show("Выберите элемент для удаления");
+        }
+
+        public void loadPassport()
+        {
+            lv_passport.Items.Clear();
+            foreach (Classes.Passport passport in Passports)
+                lv_passport.Items.Add(passport);
         }
     }
 }
